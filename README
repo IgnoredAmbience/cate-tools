@@ -5,3 +5,4 @@ Some userscripts to make life with CaTE a little bit easier
 * mark_fill - Bulk mark entry to CaTE from a delimited string of uid/mark pairs.
     Records should be newline separated
     Delimiters accepted: [ \t;:,]*
+* showall - Default to showing all students in the year, rather than defaulting to c*.
