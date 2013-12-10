@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        CaTE: Bulk Mark Filler
-// @namespace   http://www.doc.ic.ac.uk/~tw1509/
+// @namespace   https://github.com/edgemaster/cate-tools/
 // @description Fills mark entry form with records from delimited pairs of uid,mark
 // @include     https://cate.doc.ic.ac.uk/handinS.cgi?*
 // @version     1
