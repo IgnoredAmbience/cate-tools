@@ -74,6 +74,8 @@ function go() {
   marks.forEach(function (v) {insertMark(v, errors);});
   if(errors.length) {
     textField.value = errors.join("\n");
+  } else {
+    textField.value = "# All marks filled successfully";
   }
 }
 
