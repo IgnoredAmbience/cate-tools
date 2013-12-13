@@ -7,30 +7,32 @@
 // @grant       none
 // ==/UserScript==
 
-// Find the mark entry form
-var form = document.body.lastChild;
-var xr = document.evaluate("//form[.//input[contains(@value, 'Re-order students')]]",
-    document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-if(xr.singleNodeValue != null) {
-  form = xr.singleNodeValue;
+function go() {
+  // Find the mark entry form
+  var form = document.body.lastChild;
+  var xr = document.evaluate("//form[.//input[contains(@value, 'Re-order students')]]",
+      document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+  if(xr.singleNodeValue != null) {
+    form = xr.singleNodeValue;
+  }
+
+  // Create our new form
+  var markEntryDiv = document.createElement('ul');
+  markEntryDiv.innerHTML = "<b>Bulk enter student marks in uid,mark pairs (T/CSV formats):</b><br/>";
+
+  var textField = document.createElement('textarea');
+  textField.style.width = "40em";
+  textField.style.height = "100px";
+
+  var button = document.createElement('button');
+  button.innerHTML = "Fill marks";
+  button.addEventListener("click", fillMarks);
+
+  markEntryDiv.appendChild(textField);
+  markEntryDiv.appendChild(button);
+
+  form.parentElement.insertBefore(markEntryDiv, form);
 }
-
-// Create our new form
-var markEntryDiv = document.createElement('ul');
-markEntryDiv.innerHTML = "<b>Bulk enter student marks in uid,mark pairs (T/CSV formats):</b><br/>";
-
-var textField = document.createElement('textarea');
-textField.style.width = "40em";
-textField.style.height = "100px";
-
-var button = document.createElement('button');
-button.innerHTML = "Fill marks";
-button.addEventListener("click", go);
-
-markEntryDiv.appendChild(textField);
-markEntryDiv.appendChild(button);
-
-form.parentElement.insertBefore(markEntryDiv, form);
 
 function insertMark(markObj, errors) {
   var uid = markObj.uid;
@@ -68,7 +70,7 @@ function parseMarks(string, errors) {
   return marks;
 }
 
-function go() {
+function fillMarks() {
   var errors = new Array();
   var marks = parseMarks(textField.value, errors);
   marks.forEach(function (v) {insertMark(v, errors);});
@@ -77,5 +79,11 @@ function go() {
   } else {
     textField.value = "# All marks filled successfully";
   }
+}
+
+// CaTE has both handins.cgi and handinS.cgi they are different pages that have different functionality!
+// Greasemonkey does case-insensitive path matching...
+if (document.location.pathname.indexOf("handinS") != -1) {
+  go();
 }
 
