@@ -9,7 +9,7 @@
 
 // Find the mark entry form
 var form = document.body.lastChild;
-var xr = document.evaluate("//form[last()]",
+var xr = document.evaluate("//form[.//input[contains(@value, 'Re-order students')]]",
     document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
 if(xr.singleNodeValue != null) {
   form = xr.singleNodeValue;
