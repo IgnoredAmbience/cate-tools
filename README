@@ -2,6 +2,10 @@ CaTE Tools
 
 Some userscripts to make life with CaTE a little bit easier
 
+USE AT YOUR OWN RISK, I PROVIDE NO WARRANTY FOR CORRECTNESS OF THESE TOOLS.
+
+FOR MARKER DATA ENTRY, YOU SHOULD CHECK ALL MARKS ARE CORRECTLY ENTERED BEFORE SUBMITTING THE FORM.
+
 * mark_fill - Bulk mark entry to CaTE from a delimited string of uid/mark pairs.
     Records should be newline separated
     Delimiters accepted: [ \t;:,]*
