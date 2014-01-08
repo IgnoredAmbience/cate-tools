@@ -54,7 +54,6 @@ function parseMarks(string, errors) {
   var regex = /([a-z]{2,3}\d{2,5})[ \t;:,]+(\d{1,3})/
   var lines = string.split(/[\r\n]+/);
 
-  debugger;
   var marks = new Array();
   lines.forEach(function(v) {
     if (!v || v.charAt(0)=='#') return;
