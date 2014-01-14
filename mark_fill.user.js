@@ -19,6 +19,9 @@ function go() {
   // Create our new form
   var markEntryDiv = document.createElement('ul');
   markEntryDiv.innerHTML = "<b>Bulk enter student marks in uid,mark pairs (T/CSV formats):</b><br/>";
+  if (isGroupSubmission()) {
+    markEntryDiv.innerHTML += "<i>(Only group leaders marks need to be submitted, other group members will be autofilled by CaTE)</i><br/>";
+  }
 
   var textField = document.createElement('textarea');
   textField.style.width = "40em";
@@ -78,6 +81,11 @@ function fillMarks() {
   } else {
     textField.value = "# All marks filled successfully";
   }
+}
+
+function isGroupSubmission() {
+  var members = document.getElementsByName("members");
+  return (members.length && members[0].value);
 }
 
 // CaTE has both handins.cgi and handinS.cgi they are different pages that have different functionality!
