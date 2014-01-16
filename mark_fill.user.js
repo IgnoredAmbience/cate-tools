@@ -29,7 +29,18 @@ function go() {
 
   var button = document.createElement('button');
   button.innerHTML = "Fill marks";
-  button.addEventListener("click", fillMarks);
+  button.addEventListener("click", function() {
+
+    var errors = new Array();
+    var marks = parseMarks(textField.value, errors);
+    marks.forEach(function (v) {insertMark(v, errors);});
+    if(errors.length) {
+      textField.value = errors.join("\n");
+    } else {
+      textField.value = "# All marks filled successfully";
+    }
+
+  });
 
   markEntryDiv.appendChild(textField);
   markEntryDiv.appendChild(button);
@@ -70,17 +81,6 @@ function parseMarks(string, errors) {
   });
 
   return marks;
-}
-
-function fillMarks() {
-  var errors = new Array();
-  var marks = parseMarks(textField.value, errors);
-  marks.forEach(function (v) {insertMark(v, errors);});
-  if(errors.length) {
-    textField.value = errors.join("\n");
-  } else {
-    textField.value = "# All marks filled successfully";
-  }
 }
 
 function isGroupSubmission() {
