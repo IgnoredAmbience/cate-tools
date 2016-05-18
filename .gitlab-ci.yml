@@ -1,0 +1,9 @@
+---
+git-sync:
+  script:
+  - eval `ssh-agent`
+  - echo "$PUSH_KEY" | ssh-add -
+  - git sync-remote git@github.com:edgemaster/cate-tools.git git@gitlab.doc.ic.ac.uk:tw1509/cate-tools.git
+  - ssh-agent -k
+  only:
+  - triggers
